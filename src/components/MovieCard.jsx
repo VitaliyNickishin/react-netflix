@@ -29,8 +29,9 @@ export const MovieCard = ({ movie }) => {
         width={197}
         className="w-full h-auto object-cover"
       />
-      <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-2 text-sm text-white font-semibold">
-        IMDb rating: {movie.vote_average}
+      <div className="flex justify-between gap-1 absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-2 text-sm text-white font-semibold">
+        <span>{movie.original_title}</span>
+        <span className="shrink-0">IMDb: {movie.vote_average}</span>
       </div>
       <div className="absolute top-2 right-2 z-10">
         <FavoriteButton />
