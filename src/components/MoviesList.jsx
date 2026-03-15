@@ -1,7 +1,7 @@
 import { EmptyState } from "./EmptyState";
 import { MovieCard } from "./MovieCard";
 
-const MoviesList = ({ movies }) => {
+export const MoviesList = ({ movies }) => {
   if (!movies.length) {
     return <EmptyState />;
   }
@@ -18,5 +18,3 @@ const MoviesList = ({ movies }) => {
     </div>
   );
 };
-
-export default MoviesList;

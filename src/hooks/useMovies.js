@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { fetchMovies } from "../api/moviesApi";
 
 export const useMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -6,18 +7,10 @@ export const useMovies = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const loadMovies = async () => {
       try {
-        const response = await fetch("https://jsonfakery.com/movies/paginated");
-
-        if (!response.ok) {
-          throw new Error(`Response status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log("data:", data);
-
-        setMovies(data.data);
+        const data = await fetchMovies();
+        setMovies(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -25,7 +18,7 @@ export const useMovies = () => {
       }
     };
 
-    fetchMovies();
+    loadMovies();
   }, []);
 
   return { movies, isLoading, error };
