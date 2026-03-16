@@ -4,7 +4,7 @@ import { useDebounce } from "../hooks/useDebounce";
 import { MoviesList } from "../components/MoviesList";
 import { SearchInput } from "../components/SearchInput";
 import { Spinner } from "../components/Spinner";
-import { useTheme } from "../hooks/useTheme";
+import { ButtonToggleTheme } from "../components/ButtonToggleTheme";
 
 export const Home = () => {
   const { movies, isLoading, error } = useMovies();
@@ -20,8 +20,6 @@ export const Home = () => {
     );
   }, [movies, debouncedSearch]);
 
-  const { theme, toggleTheme } = useTheme();
-
   return (
     <>
       <header className="mb-10 flex items-center justify-between">
@@ -32,22 +30,7 @@ export const Home = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <div
-            className="cursor-pointer sm:w-26 text-sm px-1 sm:px-3 py-1 rounded border text-white bg-black dark:bg-transparent border-black/20 dark:border-white/10 hover:bg-white hover:text-black transition"
-            onClick={toggleTheme}
-          >
-            {theme === "dark" ? (
-              <>
-                <span>☀️</span>
-                <span className="hidden sm:inline"> Light</span>
-              </>
-            ) : (
-              <>
-                <span>🌙</span>
-                <span className="hidden sm:inline"> Dark</span>
-              </>
-            )}
-          </div>
+          <ButtonToggleTheme />
         </div>
       </header>
       <main>
