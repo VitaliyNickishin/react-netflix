@@ -1,7 +1,8 @@
 import { EmptyState } from "./EmptyState";
 import { MovieCard } from "./MovieCard";
+import { memo } from "react";
 
-export const MoviesList = ({ movies }) => {
+export const MoviesList = memo(({ movies }) => {
   if (!movies.length) {
     return <EmptyState />;
   }
@@ -17,4 +18,4 @@ export const MoviesList = ({ movies }) => {
       </ul>
     </div>
   );
-};
+});
