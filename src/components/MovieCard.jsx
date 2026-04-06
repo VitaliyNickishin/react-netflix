@@ -1,6 +1,7 @@
 import { FavoriteButton } from "./FavoriteButton";
 import { Modal } from "./ui/Modal";
 import { memo, useCallback, useState } from "react";
+import { Link } from "react-router-dom";
 
 export const MovieCard = memo(({ movie }) => {
   // console.log("render card", movie.id);
@@ -30,6 +31,7 @@ export const MovieCard = memo(({ movie }) => {
               <p>{movie.overview}</p>
               <div className="mt-2">
                 <p>Popularity: {movie.popularity}</p>
+                <p>⭐ {movie.vote_average}</p>
                 <p>Release date: {movie.release_date}</p>
               </div>
             </div>
@@ -56,6 +58,13 @@ export const MovieCard = memo(({ movie }) => {
       >
         <span>🎬</span>
       </button>
+      <Link
+        to={`/movie/${movie.movie_id}`}
+        state={{ movie }}
+        className="btn absolute top-1/2 left-1/2 -translate-1/2"
+      >
+        🔗
+      </Link>
     </div>
   );
 });
