@@ -1,9 +1,16 @@
 import { useParams, useLocation } from "react-router-dom";
+import { Spinner } from "./Spinner";
+// import { MovieComments } from "./MovieComments";
+import { lazy, Suspense } from "react";
+
+const LazyMovieComments = lazy(() =>
+  import("./MovieComments").then((c) => ({ default: c.MovieComments })),
+);
 
 export const MovieDetails = () => {
   const { id } = useParams();
   const location = useLocation();
-  console.log("location:", location);
+  // console.log("location:", location);
 
   const movieFromState = location.state?.movie;
 
@@ -31,6 +38,16 @@ export const MovieDetails = () => {
           </div>
         </div>
       </div>
+      {/* <MovieComments /> */}
+      <Suspense
+        fallback={
+          <div className="mt-3">
+            <Spinner />
+          </div>
+        }
+      >
+        <LazyMovieComments />
+      </Suspense>
     </div>
   );
 };
